@@ -4,46 +4,51 @@ Project Sari is a platform that allows mom-and-pop retailers (Sari Sari Stores) 
 
 ## API End Point
 
-* Current API end point is located at **https://project-sari.herokuapp.com/c/api/**.  We recomment that you use Postman to try out the API.
 * The API is development using REST approach.  
+* Current API end point: https://project-sari/heroku.com/c/api
 
-All calls should be prefix with the API end point.
-
-https://project-sari/heroku.com/c/api
-
-For example: to get the the list vendors
+Sample API calls to get list of available vendors:
 
 https://project-sari/heroku.com/c/api/vendors/
+
 
 ## Signup
 
 To sign up using API.
 
-POST https://project-sari/heroku.com/c/api/auth/customer/signup
+POST /auth/customer/signup
 
+``` javacript
 { "email": "sample-email@test.com",
   "password": "password"
 }
+```
 
 Sample results from success.
 
+``` javascript
 { "id": "123421341234234"
   "email": "sample-email@test.com",
   "token": "xxxx"
 }
+```
 
 ## Login
 
-POST https://project-sari/heroku.com/c/api/auth/customer/login
+POST /auth/customer/login
 
+``` javascript
 { "email": "sample-email@test.com",
   "password": "password"
 }
+``` 
 
 Sample results from scucess:
 
+``` javascript
 { token: "xxxxx"
 }
+```
 
 ## Security
 
@@ -57,14 +62,14 @@ header: {
 
 To get a list of vendors.
 
-GET /vendors
+**GET** /vendors
 
 
 ## Product List
 
 To get list of products from a particular vendor.
 
-GET /products?vendor_id=XXX
+**GET** /products?vendor_id=XXX
 
 
 ## Order Submission
