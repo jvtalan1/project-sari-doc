@@ -1,22 +1,19 @@
 # API Documentation for Project Sari
 
-Project Sari is a platform that allows mom-and-pop retailers (Sari Sari Stores) to order groceries goods from vendors ( wholesellers) like supermarkets and distributors directly.  This document explains how client application can connect to the platform, access vendor product list and submit orders.
+Project Sari is a platform that allows mom-and-pop retailers (Sari Sari Stores) to order groceries goods from vendors ( wholesellers) such as supermarkets and distributors directly.  This document explains how client application can connect to the platform, access vendor product list and submit orders.
 
 ## API End Point
 
 * The API is development using REST approach.  
 * Current API end point: https://project-sari/heroku.com/c/api
-
-Sample API calls to get list of available vendors:
-
-https://project-sari/heroku.com/c/api/vendors/
+* Example: To get list of available vendors https://project-sari/heroku.com/c/api/vendors/
 
 
 ## Signup
 
 To sign up using API.
 
-POST /auth/customer/signup
+**POST** /auth/customer/signup
 
 ``` javacript
 { "email": "sample-email@test.com",
@@ -24,7 +21,7 @@ POST /auth/customer/signup
 }
 ```
 
-Sample results from success.
+Sample result
 
 ``` javascript
 { "id": "123421341234234"
@@ -35,7 +32,7 @@ Sample results from success.
 
 ## Login
 
-POST /auth/customer/login
+**POST** /auth/customer/login
 
 ``` javascript
 { "email": "sample-email@test.com",
@@ -43,7 +40,7 @@ POST /auth/customer/login
 }
 ``` 
 
-Sample results from scucess:
+Sample results:
 
 ``` javascript
 { token: "xxxxx"
@@ -54,9 +51,11 @@ Sample results from scucess:
 
 All subseqent calls needs to have token in the header.
 
+```javascript
 header: {
   Authentication: "Bearer {token}"
 }
+```
 
 ## Vendors List
 
@@ -74,9 +73,9 @@ To get list of products from a particular vendor.
 
 ## Order Submission
 
-To submit an order.
+To send an order to the platform
 
-POST /orders
+**POST** /orders
 
 ``` javascript
 { "reference": "1",
@@ -86,9 +85,8 @@ POST /orders
     } 
   ],  
 }
-
 ```
-Above is the minimum information required.
+
 
 
 
