@@ -1,5 +1,7 @@
 # API Documentation for Project Sari
 
+updated by Victor Javier
+
 Project Sari is a platform that allows mom-and-pop retailers (Sari Sari Stores) to order groceries goods from vendors ( wholesellers) such as supermarkets and distributors directly. This document explains how client application can connect to the platform, access vendor product list and submit orders.
 
 - [My Profile](/my_profile.md)
