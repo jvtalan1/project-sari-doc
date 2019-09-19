@@ -29,7 +29,7 @@ POST /api/orders/accept_picking
             quantity: 99
         }
     ],
-    "status": "pick/started"
+    "status": "preparing"
 }
 ```
 
@@ -40,7 +40,7 @@ A new order will be retrieved with status will be changed to pick/started and ti
 ## 2. Picking Completed
 
 ```
-PUT /api/orders/{id}/picking_ended
+PUT /api/orders/{id}/done_picking
 ```
 
 Body
