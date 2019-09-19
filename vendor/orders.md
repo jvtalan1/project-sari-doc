@@ -45,7 +45,7 @@ PUT /api/orders/{id}/picking_ended
 
 Body
 
-```json
+```
 {
   "lines": [
     {
