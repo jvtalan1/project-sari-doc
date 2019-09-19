@@ -54,8 +54,13 @@ http://localhost:5000/api/products/5d72ff031d4c2ed009ca4bc5?vendor_id=5d089fd134
 ```
 {
   "name": "new name"
+  "override_name: true
 }
 ```
+
+Note: if you want to override the name, please set the flag override_name to true,
+otherwise, the name will be replaced back to original when POS reloads its master
+product list.
 
 ## UPLOAD IMAGE
 
