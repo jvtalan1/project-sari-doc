@@ -20,13 +20,13 @@ POST /api/orders/accept_picking
 ```json
 {   "_id": 123456789,
     "lines": [
-        "product_id": xxx
-        "name": xxx
-        "barcode": xxx
-        "quantity": xxx
+        "product_id": "xxx"
+        "name": "xxx"
+        "barcode": "12345"
+        "quantity": 999
         "wholesale": {
-            content_quantity: xx
-            quantity: xx
+            content_quantity: 99
+            quantity: 99
         }
     ],
     "status": "pick/started"
