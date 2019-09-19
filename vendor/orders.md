@@ -17,7 +17,7 @@ POST /api/orders/accept_picking
 - status: NOT_FOUND -> no new order is available
 - status: 200 -> Successful
 
-```json
+```
 {   "_id": 123456789,
     "lines": [
         "product_id": "xxx"
