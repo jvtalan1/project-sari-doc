@@ -8,8 +8,16 @@ Some guidelines for the **Picking App**.
 
 ## 1. Fetch Order for Picking
 
+Deprecated!
+
 ```
 POST /api/orders/accept_picking
+```
+
+New
+
+```
+GET /api/orders?q=get_next_to_pick
 ```
 
 **Returns:**
@@ -39,8 +47,16 @@ A new order will be retrieved with status will be changed to pick/started and ti
 
 ## 2. Picking Completed
 
+Deprecated!
+
 ```
 PUT /api/orders/{id}/done_picking
+```
+
+New
+
+```
+PUT /api/orders/{id}/mark_as_picked
 ```
 
 Body
