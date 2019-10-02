@@ -8,12 +8,6 @@ Some guidelines for the **Picking App**.
 
 ## 1. Fetch Order for Picking
 
-Deprecated!
-
-```
-POST /api/orders/accept_picking
-```
-
 New
 
 ```
@@ -47,14 +41,6 @@ A new order will be retrieved with status will be changed to pick/started and ti
 
 ## 2. Picking Completed
 
-Deprecated!
-
-```
-PUT /api/orders/{id}/done_picking
-```
-
-New
-
 ```
 PUT /api/orders/{id}/mark_as_picked
 ```
@@ -84,3 +70,15 @@ When successful, status will be changed to 'pick/ended' and time will be recorde
 - Quantities may be edited,
 - Zero quantity means lines is to be deleted
 - New Items may be added
+
+## 3. Abort Picking
+
+```
+PUT /api/orders/{id}/abort_pick
+```
+
+## 4. Get New document count
+
+```
+GET /api/orders?q=count&status=new
+```
