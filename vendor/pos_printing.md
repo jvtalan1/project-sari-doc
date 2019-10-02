@@ -8,7 +8,7 @@ POS for printing.
 ### Send to POS
 
 ```
-PUT /orders/{id}?action=print
+PUT /orders/{id}/print
 ```
 
 # Automated Printing Agent
