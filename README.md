@@ -7,10 +7,12 @@ Project Sari is a platform that allows mom-and-pop retailers (Sari Sari Stores) 
 - [My Profile](/my_profile.md)
 - [Mobile Authentication](/mobile.auth.md)
 
-Additonal Documents
+Vendor API's:
 
-- [Vendor API, Device Keep Alive](/vendor_api.md)
-- [Vendor API, Product Upload](/products_upload.md)
+- [Product Upload API](/vendor/products_upload.md)
+- [Picker API](/vendor/picking.md)
+- [Driver API](/vendor/driver_api.md)
+- [Device API](/vendor/device.md)
 
 ## API End Point
 
