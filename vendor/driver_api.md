@@ -14,13 +14,15 @@ Proposed workflow.
 ## 1. Get Document and Start of Delivery
 
 ```
-GET /api/orders?order_no={999}
+GET /api/orders/{document_no}
 ```
 
 **Returns:**
 
 - status: 404 -> if document is not found or document not in correct state
 - status: 200 -> Successful
+
+Note: Order API now supports retrieving using id or document_no.
 
 ## 2. Start of Delivery
 
