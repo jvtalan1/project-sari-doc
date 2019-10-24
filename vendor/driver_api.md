@@ -14,8 +14,7 @@ Proposed workflow.
 ## 1. Get Document and Start of Delivery
 
 ```
-GET /api/orders?order_no={xxx}/for_delivery
-PUT /api/orders/{id}/mark_as_delivery_start
+GET /api/orders?order_no={999}
 ```
 
 **Returns:**
@@ -23,7 +22,13 @@ PUT /api/orders/{id}/mark_as_delivery_start
 - status: 404 -> if document is not found or document not in correct state
 - status: 200 -> Successful
 
-## 2. Submit Picture and Mark as Received
+## 2. Start of Delivery
+
+```
+PUT /api/orders/{id}/mark_as_delivery_start
+```
+
+## 3. Submit Picture and Mark as Received
 
 ```
 PUT /api/orders/{id}/mark_as_received
