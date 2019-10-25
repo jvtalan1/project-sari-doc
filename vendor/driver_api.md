@@ -27,18 +27,28 @@ Note: Order API now supports retrieving using id or document_no.
 ## 2. Start of Delivery
 
 ```
-PUT /api/orders/{id}/mark_as_delivery_start
+PUT /api/orders/{id}/start_delivery
 ```
 
 ## 3. Submit Picture and Mark as Received
 
 ```
-PUT /api/orders/{id}/mark_as_received
+PUT /api/orders/{id}/end_delivery
 ```
 
-Attached picture and/or signature image.
+Attached picture and/or signature image using field name "file".
 
 **Returns:**
 
 - status: 404 -> document id not found
 - status: 200, successful
+
+Note: The image or file will be saved to AWS S3. The server will return successful without waiting for saving to complete. In case of saving error, the server will fail silently. Upon saving, the order JSON will contain the field `extras.received_image_url` which will point to the image.
+
+## 4. Others
+
+To retrieve information including address and coordinates of the vendor, use the following API.
+
+```
+GET /api/current_vendor
+```
