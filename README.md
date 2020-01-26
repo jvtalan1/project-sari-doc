@@ -10,7 +10,7 @@ Project Sari is a platform that allows mom-and-pop retailers (Sari Sari Stores) 
 Vendor API's:
 
 - [Product Upload API](/vendor/products_upload.md)
-- [Picker API](/vendor/picking.md)
+- [Picking API](/vendor/picking.md)
 - [Driver API](/vendor/driver_api.md)
 - [Device API](/vendor/device.md)
 
