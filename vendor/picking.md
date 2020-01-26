@@ -49,13 +49,19 @@ PUT /api/orders/{id}
 
 ```json
 {
-    "lines": [ {
-        "product_id": "xxx" // item id
-        "quantity": 10 // new quantity
-      }
-    ]
+  "lines": [
+    {
+      "product_id": "xxx",
+      "quantity": 10
+    }
+  ]
 }
 ```
+
+Where
+
+- xxx: product id of item you would like to change quantity
+- 10: is the new quantity
 
 If you would like to **delete** an item, simply change the quantity to 0.
 
@@ -69,13 +75,19 @@ PUT /api/orders/{id}
 
 ```json
 {
-    "lines": [ {
-        "product_id": "yyy"  // new item id
-        "quantity": 10  // new item's quanitty
-      }
-    ]
+  "lines": [
+    {
+      "product_id": "yyy",
+      "quantity": 20
+    }
+  ]
 }
 ```
+
+Where
+
+- yyy: product id of a new item you would like to add
+- 20: is the quantity
 
 Of course, you may combined multiple lines in a single API call. In this case, you can change one item'q quantity, delete another item, or add a new item.
 
