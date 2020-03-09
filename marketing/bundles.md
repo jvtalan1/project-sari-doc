@@ -1,5 +1,7 @@
 # Bundles
 
+(DRAFT --- FOR Phase II Implementation)
+
 Suki Vendors can sell items in bundles.
 
 ## Defining a bundle
