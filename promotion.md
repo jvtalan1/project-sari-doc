@@ -11,7 +11,7 @@ a discounted price, percent discount, or less amount. Promotion type is determin
 of the field `items`.
 
 ```json
-// Item Promotion
+/* Item Promotion */
 {
   "name": "Promotion name",
   "code": "promo identification code",
