@@ -19,15 +19,15 @@ of the field `items`.
   "start": "start-date-time",
   "end": "end-date-time",
   "type": "items",
-  // items included in the promotion
+  /* items included in the promotion */
   "items": [
     {
       "barcode": "item-barcode",
-      "quantity": "1", //  quantity to trigger the promotion, optional default to 1
-      "price": "discounted price", // optional promotion price, can be a number, %, or -number
-      "points": "points earn" // optional points earn for every quantity purchase
+      "quantity": "1" /*  quantity to trigger the promotion, optional default to 1 */,
+      "price": "discounted price" /* optional promotion price, can be a number, %, or -number */,
+      "points": "points earn" /* optional points earn for every quantity purchase */
     },
-    // -- another item
+    /* -- another item -- */
     {
       "barcode": "item-barcode",
       "quantity": "1",
@@ -35,8 +35,8 @@ of the field `items`.
       "points": "points earn"
     }
   ],
-  // quantity, price, points if specified at the root level can be used as default values
-  // in case individual items does not indicate
+  /* quantity, price, points if specified at the root level can be used as default values
+   in case individual items does not indicate */
   "quantity": "",
   "price": "",
   "points": ""
@@ -49,28 +49,28 @@ Promotion is applicable to the entire transaction. It is trigger when certain am
 Promotion type is determined with the presence of the keyword `scope` = `all`.
 
 ```json
-// Overall Promotion
+/* Overall Promotion */
 {
   "name": "Promotion name",
   "code": "promo identification code",
   "start": "start-date-time",
   "end": "end-date-time",
   "messaage": "display mssage for user",
-  "type": "all", // applicable to all items
+  "type": "all" /* applicable to all items */,
   "triggers": { "amount": "" },
-  // rewards to be given when trigger is reached
+  /* rewards to be given when trigger is reached */
   "rewards": {
-    "amount": "", // can be amount, less percentage, less amount
-    "points": "" // can be points
+    "amount": "" /* can be amount, less percentage, less amount */,
+    "points": "" /* can be points */
   },
-  "repeat": "once|every" // default to once, reward is only given once, every: reward is given for every amount-trigger
+  "repeat": "once|every" /* default to once, reward is only given once, every: reward is given for every amount-trigger */
 }
 ```
 
 ### Pool Promotion
 
 ```json
-// Item Promotion
+/* Item Promotion */
 {
   "name": "Promotion name",
   "code": "promo identification code",
@@ -78,15 +78,15 @@ Promotion type is determined with the presence of the keyword `scope` = `all`.
   "type": "pool",
   "start": "start-date-time",
   "end": "end-date-time",
-  // items included in the promotion, when any of these items are purchased
+  /* items included in the promotion, when any of these items are purchased */
   "items": ["barcode", "barcode", "barcode"],
   "triggers": {
-    "amount": "", // can be amount, when amount is reached
-    "quantity": "" // can be quantity, when quantity is reached
+    "amount": "" /* can be amount, when amount is reached */,
+    "quantity": "" /* can be quantity, when quantity is reached */
   },
   "rewards": {
-    "amount": "", // can be amount, less percentage, less amount
-    "points": "" // can be points
+    "amount": "" /* can be amount, less percentage, less amount */,
+    "points": "" /* can be points */
   },
   "repeat": "once|every"
 }
