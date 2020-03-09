@@ -2,9 +2,7 @@
 
 (DRAFT - WORK IN PRGORESS)
 
-## Promotion Syntax
-
-### Item Promotion
+## A. Item Promotion
 
 Each item has its own defined promotion. Price is re-calculated based on the price field which can be
 a discounted price, percent discount, or less amount. Promotion type is determined with the presence
@@ -43,7 +41,7 @@ of the field `items`.
 }
 ```
 
-### Overall Promotion
+## B. Overall Promotion
 
 Promotion is applicable to the entire transaction. It is trigger when certain amount is reached.
 Promotion type is determined with the presence of the keyword `scope` = `all`.
@@ -67,7 +65,7 @@ Promotion type is determined with the presence of the keyword `scope` = `all`.
 }
 ```
 
-### Pool Promotion
+## C. Pool Promotion
 
 ```json5
 /* Item Promotion */
@@ -94,7 +92,7 @@ Promotion type is determined with the presence of the keyword `scope` = `all`.
 
 # Sample Promotions
 
-### Simple Discount
+## 1. Simple Discount
 
 Example 1: Special Price
 
@@ -135,7 +133,7 @@ Example 3: Less Amount
 }
 ```
 
-### Simple Discount with Quantity
+## 2. Simple Discount with Quantity
 
 For the examples below, we assume item `111` has unit price of P20.
 
@@ -175,7 +173,7 @@ Example 6: Less value for Given Quantity
 }
 ```
 
-### Earning Points
+## 3. Earning Points
 
 Example 7: Earn 5 points for every item purchase
 
