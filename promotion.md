@@ -4,47 +4,73 @@
 
 ## A. Item Promotion
 
-Each item has its own defined promotion. Price is re-calculated based on the price field which can be
-a discounted price, percent discount, or less amount. Promotion type is determined with the presence
-of the field `items`.
+Each item is given its own discount. Actual Price is calculated based on the value of `discount`. The value is string which can interpretted as a discounted price, percent discount, or amount discount.
+
+As many as 1000 items can be included in single promotion.
+
+Let's illustrate with an example. Our fictitious March 2020 promotion has 3 participating items. Item 111 is given 10% off, item 222 has discounted price of 25 pesos, and item 333 is offered less 5 pesos. Below is the syntax for above scenario.
+
+Example: Price Off on Selected Items
 
 ```json5
-/* Item Promotion */
 {
-  name: "Promotion name",
-  code: "promo identification code",
+  name: "Price off on selected items",
+  code: "PRICEOFF2020-03",
+  started: "2020-03-01",
+  ended: "2020-03-30",
+  type: "items",
+  items: [
+    {
+      barcode: "111",
+      discount: "10%"
+    },
+    {
+      barcode: "222",
+      discount: "25"
+    },
+    {
+      barcode: "333",
+      discount: "-5"
+    }
+  ]
+}
+```
+
+Format:
+
+```json5
+{
+  name: "promotion-name",
+  code: "identification-code",
   message: "display mssage for user",
   start: "start-date-time",
   end: "end-date-time",
   type: "items",
-  /* items included in the promotion */
   items: [
     {
-      barcode: "item-barcode",
-      quantity: "1" /*  quantity to trigger the promotion, optional default to 1 */,
-      price: "discounted price" /* optional promotion price, can be a number, %, or -number */,
-      points: "points earn" /* optional points earn for every quantity purchase */
-    },
-    /* -- another item -- */
-    {
-      barcode: "item-barcode",
+      barcode: "barcode1",
       quantity: "1",
-      price: "discounted price",
-      points: "points earn"
+      discount: "discount",
+      points: "points"
+    },
+    {
+      barcode: "barcode2",
+      quantity: "1",
+      discount: "discount",
+      points: "points"
     }
-  ],
-  /* quantity, price, points if specified at the root level can be used as default values
-   in case individual items does not indicate */
-  quantity: "",
-  price: "",
-  points: ""
+  ]
 }
 ```
+
+More examples can be found in the Sample Section below.
 
 ## B. Overall Promotion
 
 Promotion is applicable to the entire transaction. It is trigger when certain amount is reached.
-Promotion type is determined with the presence of the keyword `scope` = `all`.
+Promotion type is determined with the keyword `all`.
+
+Format:
 
 ```json5
 /* Overall Promotion */
@@ -58,7 +84,7 @@ Promotion type is determined with the presence of the keyword `scope` = `all`.
   triggers: { amount: "" },
   /* rewards to be given when trigger is reached */
   rewards: {
-    amount: "" /* can be amount, less percentage, less amount */,
+    discount: "" /* can be amount, less percentage, less amount */,
     points: "" /* can be points */
   },
   repeat: "once|every" /* default to once, reward is only given once, every: reward is given for every amount-trigger */
@@ -66,6 +92,8 @@ Promotion type is determined with the presence of the keyword `scope` = `all`.
 ```
 
 ## C. Pool Promotion
+
+Format:
 
 ```json5
 {
@@ -75,15 +103,11 @@ Promotion type is determined with the presence of the keyword `scope` = `all`.
   type: "pool",
   start: "start-date-time",
   end: "end-date-time",
-  /* items included in the promotion, when any of these items are purchased */
-  items: ["barcode", "barcode", "barcode"],
-  triggers: {
-    amount: "" /* can be amount, when amount is reached */,
-    quantity: "" /* can be quantity, when quantity is reached */
-  },
+  items: ["barcode1", "barcode2", "barcode3"],
+  triggers: { amount: "" },
   rewards: {
-    amount: "" /* can be amount, less percentage, less amount */,
-    points: "" /* can be points */
+    discount: "discount",
+    points: "points"
   },
   repeat: "once|every"
 }
@@ -101,7 +125,7 @@ Example 1: Special Price
   name: "Special Price",
   start: "2020-03-01",
   end: "2020-03-07",
-  items: [{ barcode: "111", price: 19.5 }]
+  items: [{ barcode: "111", discount: 19.5 }]
 }
 ```
 
@@ -113,7 +137,7 @@ Example 2: Percent Off
   name: "Ten Perent Off",
   start: "2020-03-01",
   end: "2020-03-07",
-  items: [{ barcode: "111", price: "10%" }]
+  items: [{ barcode: "111", discount: "10%" }]
 }
 ```
 
@@ -126,8 +150,8 @@ Example 3: Less Amount
   start: "2020-03-01",
   end: "2020-03-07",
   items: [
-    { barcode: "111", price: "-1" },
-    { barcode: "222", price: "-1" }
+    { barcode: "111", discount: "-1" },
+    { barcode: "222", discount: "-1" }
   ]
 }
 ```
@@ -144,7 +168,7 @@ Example 4: Discounted for Given Quantity
   name: "Buy 10 for price of 9",
   start: "2020-03-01",
   end: "2020-03-07",
-  items: [{ barcode: "111", quantity: 10, price: "180" }]
+  items: [{ barcode: "111", quantity: 10, discount: "180" }]
 }
 ```
 
@@ -156,7 +180,7 @@ Example 5: Less % for Given Quantity
   name: "Less 10% if you buy 10 units",
   start: "2020-03-01",
   end: "2020-03-07",
-  items: [{ barcode: "111", quantity: 10, price: "10%" }]
+  items: [{ barcode: "111", quantity: 10, discount: "10%" }]
 }
 ```
 
@@ -168,7 +192,7 @@ Example 6: Less value for Given Quantity
   name: "Less P15 if you buy 10 units",
   start: "2020-03-01",
   end: "2020-03-07",
-  items: [{ barcode: "111", quantity: 10, price: "-15" }]
+  items: [{ barcode: "111", quantity: 10, discount: "-15" }]
 }
 ```
 
@@ -226,7 +250,7 @@ Following are the barcodes of participating items: 111, 222 & 333.
   end: "2020-03-07",
   items: ["111", "222", "333"],
   triggers: { amount: 1000 },
-  rewards: { amount: 50 },
+  rewards: { discount: 50 },
   repeat: "every"
 }
 ```
