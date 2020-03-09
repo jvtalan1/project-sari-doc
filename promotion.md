@@ -1,152 +1,218 @@
-# Promotion Language
+# Suki Promotion Language
 
 (DRAFT - WORK IN PRGORESS)
 
+## Promotion Syntax
+
+### Item Promotion
+
+Each item has its own defined promotion. Price is re-calculated based on the price field which can be
+a discounted price, percent discount, or less amount. Promotion type is determined with the presence
+of the field `items`.
+
+```json
+// Item Promotion
+{
+  "name": "Promotion name",
+  "code": "promo identification code",
+  "message": "display mssage for user",
+  "start": "start-date-time",
+  "end": "end-date-time",
+  "type": "items",
+  // items included in the promotion
+  "items": [
+    {
+      "barcode": "item-barcode",
+      "quantity": "1", //  quantity to trigger the promotion, optional default to 1
+      "price": "discounted price", // optional promotion price, can be a number, %, or -number
+      "points": "points earn" // optional points earn for every quantity purchase
+    },
+    // -- another item
+    {
+      "barcode": "item-barcode",
+      "quantity": "1",
+      "price": "discounted price",
+      "points": "points earn"
+    }
+  ],
+  // quantity, price, points if specified at the root level can be used as default values
+  // in case individual items does not indicate
+  "quantity": "",
+  "price": "",
+  "points": ""
+}
+```
+
+### Overall Promotion
+
+Promotion is applicable to the entire transaction. It is trigger when certain amount is reached.
+Promotion type is determined with the presence of the keyword `scope` = `all`.
+
+```json
+// Overall Promotion
+{
+  "name": "Promotion name",
+  "code": "promo identification code",
+  "start": "start-date-time",
+  "end": "end-date-time",
+  "messaage": "display mssage for user",
+  "type": "all", // applicable to all items
+  "triggers": { "amount": "" },
+  // rewards to be given when trigger is reached
+  "rewards": {
+    "amount": "", // can be amount, less percentage, less amount
+    "points": "" // can be points
+  },
+  "repeat": "once|every" // default to once, reward is only given once, every: reward is given for every amount-trigger
+}
+```
+
+### Pool Promotion
+
+```json
+// Item Promotion
+{
+  "name": "Promotion name",
+  "code": "promo identification code",
+  "message": "display mssage for user",
+  "type": "pool",
+  "start": "start-date-time",
+  "end": "end-date-time",
+  // items included in the promotion, when any of these items are purchased
+  "items": ["barcode", "barcode", "barcode"],
+  "triggers": {
+    "amount": "", // can be amount, when amount is reached
+    "quantity": "" // can be quantity, when quantity is reached
+  },
+  "rewards": {
+    "amount": "", // can be amount, less percentage, less amount
+    "points": "" // can be points
+  },
+  "repeat": "once|every"
+}
+```
+
+# Sample Promotions
+
 ### Simple Discount
 
-<!--
-  description: Specified new or discounted price
-  old_price: 20
-  barcode: 1234
-  new price: 19.50
- -->
+Example 1: Special Price
 
 ```json
 {
-  "code": "DISCOUNT-PRICE",
-  "name": "Discounted Price",
-  "items": [{ "barcode": "1234", "price": 19.5 }]
+  "code": "001",
+  "name": "Special Price",
+  "start": "2020-03-01",
+  "end": "2020-03-07",
+  "items": [{ "barcode": "111", "price": 19.5 }]
+}
+```
+
+Example 2: Percent Off
+
+```json
+{
+  "code": "002",
+  "name": "Ten Perent Off",
+  "start": "2020-03-01",
+  "end": "2020-03-07",
+  "items": [{ "barcode": "111", "price": "10%" }]
+}
+```
+
+Example 3: Less Amount
+
+```json
+{
+  "code": "003",
+  "name": "Less 1 Peso For every item",
+  "start": "2020-03-01",
+  "end": "2020-03-07",
+  "items": [
+    { "barcode": "111", "price": "-1" },
+    { "barcode": "222", "price": "-1" }
+  ]
 }
 ```
 
 ### Simple Discount with Quantity
 
-<!-- For example,
-Scenario: Buy 10KG for price of 9
-barcode: 111
-unit price: P20,
- -->
+For the examples below, we assume item `111` has unit price of P20.
+
+Example 4: Discounted for Given Quantity
 
 ```json
 {
-  "name": "Buy 10KG for the price of 9KG",
-  "code": "10FOR9",
+  "code": "004",
+  "name": "Buy 10 for price of 9",
+  "start": "2020-03-01",
+  "end": "2020-03-07",
+  "items": [{ "barcode": "111", "quantity": 10, "price": "180" }]
+}
+```
+
+Example 5: Less % for Given Quantity
+
+```json
+{
+  "code": "005",
+  "name": "Less 10% if you buy 10 units",
+  "start": "2020-03-01",
+  "end": "2020-03-07",
+  "items": [{ "barcode": "111", "quantity": 10, "price": "10%" }]
+}
+```
+
+Example 6: Less value for Given Quantity
+
+```json
+{
+  "code": "006",
+  "name": "Less P15 if you buy 10 units",
+  "start": "2020-03-01",
+  "end": "2020-03-07",
+  "items": [{ "barcode": "111", "quantity": 10, "price": "-15" }]
+}
+```
+
+### Earning Points
+
+Example 7: Earn 5 points for every item purchase
+
+```json
+{
+  "code": "007",
+  "name": "Earn 5 points for every unit bought",
+  "start": "2020-03-01",
+  "end": "2020-03-07",
+  "items": [{ "barcode": "111", "points": 5 }]
+}
+```
+
+Example 8: Earn 20 points if you buy 10 units (One-time only)
+
+```json
+{
+  "code": "008",
+  "name": "Earn 10 points when you buy 10 units (one-time-only)",
+  "start": "2020-03-01",
+  "end": "2020-03-07",
   "items": [
-    {
-      "barcode": "111",
-      "quantity": 10,
-      "price": 180,
-      "message": "Buy 10KG for the price of 9KG"
-    }
+    { "barcode": "111", "quantity": 10, "points": 20, "repeat": "once" }
   ]
 }
 ```
 
-### Simple Percent Discount
-
-<!--
-  description: Less 10% for every item included in the promo
-  old_price: 20
-  barcode: 111, 222, 333
-  discount: 10%
- -->
+Example 9: Earn 20 points for every 10 units purchase
 
 ```json
 {
-  "name": "P&G Discount for Summer",
-  "code": "PERCENT",
-  "message": "Less 10%",
-  "discount": "10%",
-  "items": [{ "barcode": "111" }, { "barcode": "222" }, { "barcode": "333" }]
-}
-```
-
-### Less Peso Value
-
-<!--
-  description: Less 1 pesos for every item
-  old_price: 20
-  barcode: 111, 222, 333
-  discount: -1 (less 1 peso)
- -->
-
-```json
-{
-  "name": "Discount 10%",
-  "code": "PERCENT",
-  "discount": "-1",
-  "items": [{ "barcode": "111" }, { "barcode": "222" }, { "barcode": "333" }]
-}
-```
-
-<!-- For example,
-Scenario: Buy 1 Case for get 7% off
-    barcode: 111
-    unit price: P20,
-    case quantity: 24
- -->
-
-```json
-{
-  "name": "Buy 1 case get 7% off",
-  "code": "1CASE7OFF",
-  "items": [{ "barcode": "111", "quantity": 24, "price": "7%" }]
-}
-```
-
-<!-- For example,
-Scenario: Buy 2 Case of X and 1 case y, get peso off
-    item 1: alaka milk
-    barcode: 111
-    unit price: P20,
-    case quantity: 24
-
-    item 2: alaska evaporada
-    barcode: 222,
-    unit_price: P30,
-    case_quantity: 12,
-
-    discount: 506
- -->
-
-```json
-{
-  "name": "Buy this bundle (2 Case + 1 Case), get 506 pesos off",
-  "code": "1CASE7OFF",
+  "code": "009",
+  "name": "Earn 20 points for every 10 units",
+  "start": "2020-03-01",
+  "end": "2020-03-07",
   "items": [
-    {
-      "bundle": [
-        { "barcode": "111", "quantity": 24 },
-        { "barcode": "222", "quanitty": 12 }
-      ],
-      "price": "-506"
-    }
+    { "barcode": "111", "quantity": 10, "points": 20, "repeat": "every" }
   ]
-}
-```
-
-# Points Discount
-
-<!-- buy 1 item, get 78 points
-  barcode: 111
-  points: 78
- -->
-
-```json
-{
-  "name": "Buy 1 Nissin Minicup, get 78 points",
-  "code": "NISSIN",
-  "items": [{ "barcode": "111", "points": 78 }]
-}
-```
-
-# Applicable to All
-
-```json
-{
-  "name": "60 points for every 4000",
-  "code": "4000",
-  "scope": "all",
-  "trigger": { "amount": 4000, "points": 60 }
 }
 ```
