@@ -10,36 +10,36 @@ Each item has its own defined promotion. Price is re-calculated based on the pri
 a discounted price, percent discount, or less amount. Promotion type is determined with the presence
 of the field `items`.
 
-```jsonc
+```json5
 /* Item Promotion */
 {
-  "name": "Promotion name",
-  "code": "promo identification code",
-  "message": "display mssage for user",
-  "start": "start-date-time",
-  "end": "end-date-time",
-  "type": "items",
+  name: "Promotion name",
+  code: "promo identification code",
+  message: "display mssage for user",
+  start: "start-date-time",
+  end: "end-date-time",
+  type: "items",
   /* items included in the promotion */
-  "items": [
+  items: [
     {
-      "barcode": "item-barcode",
-      "quantity": "1" /*  quantity to trigger the promotion, optional default to 1 */,
-      "price": "discounted price" /* optional promotion price, can be a number, %, or -number */,
-      "points": "points earn" /* optional points earn for every quantity purchase */
+      barcode: "item-barcode",
+      quantity: "1" /*  quantity to trigger the promotion, optional default to 1 */,
+      price: "discounted price" /* optional promotion price, can be a number, %, or -number */,
+      points: "points earn" /* optional points earn for every quantity purchase */
     },
     /* -- another item -- */
     {
-      "barcode": "item-barcode",
-      "quantity": "1",
-      "price": "discounted price",
-      "points": "points earn"
+      barcode: "item-barcode",
+      quantity: "1",
+      price: "discounted price",
+      points: "points earn"
     }
   ],
   /* quantity, price, points if specified at the root level can be used as default values
    in case individual items does not indicate */
-  "quantity": "",
-  "price": "",
-  "points": ""
+  quantity: "",
+  price: "",
+  points: ""
 }
 ```
 
