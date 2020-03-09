@@ -16,73 +16,73 @@ free shipping (example 2) and bundle offer coupons (example 4).
 
 Example 1. Gift Certicate
 
-```json
+```json5
 {
-  "code": "FREE100",
-  "name": "100 Peso Gift Certificate",
-  "value": 100,
-  "min_amount": 5000
+  code: "FREE100",
+  name: "100 Peso Gift Certificate",
+  value: 100,
+  min_amount: 5000
 }
 ```
 
 Example 2. Free shipping
 
-```json
+```json5
 {
-  "code": "SHIPFREE",
-  "name": "Free Shipping",
-  "shipping": "-100%",
-  "min_amount": 5000
+  code: "SHIPFREE",
+  name: "Free Shipping",
+  shipping: "-100%",
+  min_amount: 5000
 }
 ```
 
 Example 3. Discount on Shipping
 
-```json
+```json5
 {
-  "code": "SHIP50OFF",
-  "name": "50 Pesos Off",
-  "shipping": "-50",
-  "min_amount": 2000
+  code: "SHIP50OFF",
+  name: "50 Pesos Off",
+  shipping: "-50",
+  min_amount: 2000
 }
 ```
 
 Example 4. Bundle Offer
 
-```json
+```json5
 {
-  "code": "SPO1",
-  "name": "Special Offer: Less P72 for 2 Cases of Coke and 1 Case of Sprite",
-  "bundle": [
-    { "barcode": "111", "quantity": 48 },
-    { "barcode": "222", "quantity": 24 }
+  code: "SPO1",
+  name: "Special Offer: Less P72 for 2 Cases of Coke and 1 Case of Sprite",
+  bundle: [
+    { barcode: "111", quantity: 48 },
+    { barcode: "222", quantity: 24 }
   ],
-  "price": "-72",
-  "quantity": 5, // maximum 5 quantity can be used
-  "expires": "2020-03-30" // expiry date
+  price: "-72",
+  quantity: 5, // maximum 5 quantity can be used
+  expires: "2020-03-30" // expiry date
 }
 ```
 
 Example 5. Special Item offer
 
-```json
+```json5
 {
-  "code": "SP02",
-  "name": "Free: Uniqlo Umbrella",
-  "barcode": "111", // barcode of umbrella
-  "expires": "2020-03-30" // expiry date
+  code: "SP02",
+  name: "Free: Uniqlo Umbrella",
+  barcode: "111", // barcode of umbrella
+  expires: "2020-03-30" // expiry date
 }
 ```
 
 Example 6. Special Item discount
 
-```json
+```json5
 {
-  "code": "SP03",
-  "name": "50% for Umbrella",
-  "barcode": "111", // barcode of umbrella
-  "price": "50%",
-  "expires": "2020-03-30" // expiry date
+  code: "SP03",
+  name: "50% for Umbrella",
+  barcode: "111", // barcode of umbrella
+  price: "50%",
+  expires: "2020-03-30" // expiry date
 }
 ```
 
