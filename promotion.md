@@ -68,7 +68,6 @@ Promotion type is determined with the presence of the keyword `scope` = `all`.
 ## C. Pool Promotion
 
 ```json5
-/* Item Promotion */
 {
   name: "Promotion name",
   code: "promo identification code",
@@ -90,7 +89,7 @@ Promotion type is determined with the presence of the keyword `scope` = `all`.
 }
 ```
 
-# Sample Promotions
+# Samples
 
 ## 1. Simple Discount
 
@@ -208,5 +207,45 @@ Example 9: Earn 20 points for every 10 units purchase
   start: "2020-03-01",
   end: "2020-03-07",
   items: [{ barcode: "111", quantity: 10, points: 20, repeat: "every" }]
+}
+```
+
+## 4. Pool Promotions
+
+Example 10: Get 50 pesos off on purchase of 1000 selected Nestle Items
+
+Following are the barcodes of participating items: 111, 222 & 333.
+
+```json5
+{
+  name: "Nestle Promotion 1",
+  code: "NESTLE1",
+  message: "Get 50 off on purchase of 1000 worth of Nestle products",
+  type: "pool",
+  start: "2020-03-01",
+  end: "2020-03-07",
+  items: ["111", "222", "333"],
+  triggers: { amount: 1000 },
+  rewards: { amount: 50 },
+  repeat: "every"
+}
+```
+
+Example 11: Earn extra 50 points on minimum purchase of 2000 worth of Nestle products
+
+Following are the barcodes of participating items: 111, 222 & 333.
+
+```json5
+{
+  name: "Nestle Promotion 2",
+  code: "NESTLE2",
+  message: "Earn extra 50 points on min purchase of 2000 Nestle products",
+  type: "pool",
+  start: "2020-03-01",
+  end: "2020-03-07",
+  items: ["111", "222", "333"],
+  triggers: { amount: 2000 },
+  rewards: { points: 50 },
+  repeat: "once"
 }
 ```
