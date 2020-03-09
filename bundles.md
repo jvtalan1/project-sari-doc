@@ -23,17 +23,17 @@ Coke (333) is P10 x 24 x 2 = 480
 Sprite (444) is P8 x 24 = 192
 Total regular price = 672
 
-```json
+```json5
 {
-  "name": "2 Cases of Coke and 1 Case of Sprite",
-  "code": "333+444", // bundle uniquely identifies the bundle in uploads
-  "items": [
-    { "barcode": "333", "quantity": 48 }, // item 1
-    { "barcode": "444", "quanitty": 24 } // item 2
+  name: "2 Cases of Coke and 1 Case of Sprite",
+  code: "333+444", // bundle uniquely identifies the bundle in uploads
+  items: [
+    { barcode: "333", quantity: 48 }, // item 1
+    { barcode: "444", quanitty: 24 } // item 2
   ],
-  "price": "600", // less 72 pesos
-  "start": "03-01-2020",
-  "end": "03-07-20202"
+  price: "600", // less 72 pesos
+  start: "03-01-2020",
+  end: "03-07-20202"
 }
 ```
 
