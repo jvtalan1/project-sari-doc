@@ -10,7 +10,7 @@ Each item has its own defined promotion. Price is re-calculated based on the pri
 a discounted price, percent discount, or less amount. Promotion type is determined with the presence
 of the field `items`.
 
-```json
+```jsonc
 /* Item Promotion */
 {
   "name": "Promotion name",
