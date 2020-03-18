@@ -1,6 +1,7 @@
 # Orders API for Picking App
 
-_Last updated: Jan 26, 2020_
+Last updated: March 18, 2020
+Author: Victor Javier
 
 Some guidelines for the **Picking App**.
 
@@ -10,8 +11,25 @@ Some guidelines for the **Picking App**.
 
 ## 1. Fetch Order for Picking
 
+To fetch the next accepted document:
+
 ```
 GET /api/orders?q=get_next_to_pick
+```
+
+**Update**: The next accepted document is by default the first document that is accepted. If the user
+abort_pick the document, this API will return the next document.
+
+To fetch a specific order (must be in accepted state)
+
+```
+GET /api/orders/{id}/start_pick
+```
+
+To fetch a list of orders that are in accepted status
+
+```
+GET /api/orders?status=accepted
 ```
 
 **Returns:**
