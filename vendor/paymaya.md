@@ -26,6 +26,8 @@ Save the payama public key.
 
 Add paymaya to list of our supported payment types and status of "A".
 
+`PUT /api/current_vendor/payment_types`
+
 ```json
 [
   {
@@ -39,6 +41,14 @@ Add paymaya to list of our supported payment types and status of "A".
   }
 ]
 ```
+
+**Important Note**:
+
+This API replaces all the payment types. The payment type of cash should always be there.
+
+Mobile App should detect presence of `payment_types` in the vendor settings. If so, it can safely ignore the earlier `payment_methods` field.
+
+`payment_types` is an array object while `payment_methods` is an array os String, which contains less information.
 
 ### 3. Order Status
 
@@ -61,6 +71,8 @@ When payment is completed the by user. The payment status of the order will chan
   payment_amount: 1000,
 }
 ```
+
+It is up the Vendor Portal to display this payment status information correctly for the backend users.
 
 ### 4. Resending Checkout URL
 
@@ -114,4 +126,4 @@ When there is an error, the payment status may or may not be updated. If Paymaya
 
 In this case, mobile should be able request for another SMS containing a checkout URL.
 
-`POST /c/api/orders/xxxx/paymaya`
+`POST /c/api/orders/{order_id}/paymaya`
