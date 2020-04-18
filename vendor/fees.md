@@ -23,7 +23,7 @@ Fees can be calculated using a simple rate table. In this example, fee is P100 (
 
 Example:
 
-```json
+```json5
 {   name: "Delivery Fee",
     code: "delivery",
     rates: [
