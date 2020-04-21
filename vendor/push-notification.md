@@ -10,6 +10,8 @@ Create user device to store the information of the registered device
 
 **sample request from the mobile app**
 
+```POST /c/api/customer/:id/device ```
+
 ```
 {
     "brand": "samsung",
