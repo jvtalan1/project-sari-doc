@@ -38,7 +38,8 @@ new Schema (
 	os_version: String
 })
 ```
-#Customer Schema
+**Customer Schema**
+
 add `customer_device` schema to customer
 
 ```
