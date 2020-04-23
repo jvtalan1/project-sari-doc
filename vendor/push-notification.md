@@ -24,8 +24,8 @@ Create user device to store the information of the registered device
 }
 ```
 
-we want to save the device token and other information of the users device, so create a table `user_device`
-and associate the `user_device` table to `UserSchema` to accommodate has many device_devices or multiple devices in one user
+we want to save the device token and other information of the users device, so create a table `customer_device`
+and associate the `customer_device` table to `CustomerSchema` to accommodate has many device_devices or multiple devices in one user
 ```
 new Schema (
 {
@@ -37,5 +37,38 @@ new Schema (
 	os_name: String,
 	os_version: String
 })
+```
+#Customer Schema
+add `customer_device` schema to customer
+
+```
+const CustomerSchema = new Schema(
+  {
+    name: { type: String, required: [true, 'name is require'] },
+    address: String,
+    telephone: String,
+    mobile: String,
+    contact: String,
+    customer_type: { type: String, default: 'business' },
+    my_vendors: [{ type: mongoose.Schema.Types.ObjectId, ref: 'vendor' }], // list of favorite vendors
+**    device: [CustomerDeviceSchema],**
+    full_address: {
+      formatted_address: String,
+      landmark: String,
+      longitude: Number,
+      latitude: Number,
+      // -- complete address fields
+      street: String,
+      district: String,
+      city: String,
+      province: String,
+      state: String,
+      country: String,
+      zipcode: String,
+    },
+  },
+  options
+);
+
 ```
 
